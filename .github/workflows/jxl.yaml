@@ -1,0 +1,49 @@
+name: Buil JXL
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-macos:
+    name: macOS Build
+    runs-on: macos-12
+
+    env:
+      BASE_DIR: ${{ github.workspace }}/im_build 
+      WORKING_DIR: ${{ github.workspace }}
+
+    steps:
+    - name: Install dependencies
+      run: |
+        set -e
+        
+        export HOMEBREW_NO_AUTO_UPDATE=1
+        brew install pkg-config nasm yasm gettext autoconf automake python@3.9 coreutils ninja
+
+    - name: Build Deps
+      run: |
+        echo "+--------------------------------"
+        echo "| Building jxl"
+        echo "+--------------------------------"
+    
+        git clone https://github.com/libjxl/libjxl.git --recursive --shallow-submodules
+        cd libjxl
+        mkdir buildir && cd buildir
+    
+        cmake .. -DCMAKE_BUILD_TYPE=Release \
+                  -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 \
+                  -DCMAKE_INSTALL_PREFIX=blabla \
+                  -DBUILD_TESTING=NO \
+                  -DAVIF_FOUND=NO \
+                  -DWebP_FOUND=NO \
+                  -DJPEGXL_ENABLE_DOXYGEN=NO \
+                  -DJPEGXL_ENABLE_JNI=NO \
+                  -DJPEGXL_ENABLE_OPENEXR=YES \
+                  -DJPEGXL_ENABLE_SJPEG=NO \
+                  -DJPEGXL_ENABLE_SKCMS=YES \
+                  -DJPEGXL_FORCE_SYSTEM_BROTLI=NO \
+                  -DJPEGXL_FORCE_SYSTEM_HWY=NO
+    
+        cmake --build . -- -j$(nproc)
+
+        
