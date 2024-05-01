@@ -32,15 +32,6 @@ jobs:
         export AS="as -mmacosx-version-min=10.15"
         export LD="ld -macosx_version_min 10.15"
               
-        export CPPFLAGS="-I$DELEGATES/include"
-        export LDFLAGS="-L$DELEGATES/lib"
-              
-        export LD_LIBRARY_PATH=$DELEGATES/lib
-        export PKG_CONFIG_PATH=$DELEGATES/lib/pkgconfig
-        export LDFLAGS="-L$LD_LIBRARY_PATH -R$LD_LIBRARY_PATH"
-              
-        export PATH="$PATH:$DELEGATES/bin"
-              
         mkdir -p $DELEGATES
 
         echo "+--------------------------------"
