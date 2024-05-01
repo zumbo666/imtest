@@ -38,7 +38,7 @@ jobs:
         echo "| Building jxl"
         echo "+--------------------------------"
     
-        git clone https://github.com/libjxl/libjxl.git --recursive --shallow-submodules
+        git clone --branch v0.8.0 https://github.com/libjxl/libjxl.git --recursive --shallow-submodules
         cd libjxl
         mkdir buildir && cd buildir
     
