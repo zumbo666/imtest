@@ -18,6 +18,7 @@ jobs:
         set -e
         
         export HOMEBREW_NO_AUTO_UPDATE=1
+        brew install llvm
         brew install pkg-config nasm yasm gettext autoconf automake python@3.9
 
     - name: Build Deps
@@ -25,6 +26,6 @@ jobs:
         mkdir ${{ github.workspace }}/deps
         cd ${{ github.workspace }}/deps
         
-        wget https://gist.githubusercontent.com/zumbo666/899e916b256e4830e80fce5a1ddb0b4f/raw/0a47a42a94c556ed821f4434ff988da70e936984/compile_im_deps_intel.sh
+        wget https://gist.githubusercontent.com/zumbo666/899e916b256e4830e80fce5a1ddb0b4f/raw/5d8e6ac1c0334900ddaab216a14d5497fa3bea63/compile_im_deps_intel.sh
 
         sh compile_im_deps_intel.sh
