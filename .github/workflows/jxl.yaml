@@ -35,6 +35,10 @@ jobs:
               
         mkdir -p $DELEGATES
 
+        export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+        export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+        export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+
         echo "+--------------------------------"
         echo "| Building jxl"
         echo "+--------------------------------"
@@ -55,8 +59,8 @@ jobs:
                   -DJPEGXL_ENABLE_SJPEG=NO \
                   -DJPEGXL_ENABLE_SKCMS=YES \
                   -DJPEGXL_FORCE_SYSTEM_BROTLI=NO \
-                  -DJPEGXL_FORCE_SYSTEM_HWY=NO \
-                  -DCMAKE_C_COMPILER="/opt/homebrew/opt/llvm/bin/clang"
+                  -DJPEGXL_FORCE_SYSTEM_HWY=NO
+                  #-DCMAKE_C_COMPILER="/opt/homebrew/opt/llvm/bin/clang"
     
         cmake --build . -- -j$(nproc)
 
