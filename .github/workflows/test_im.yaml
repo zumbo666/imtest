@@ -26,6 +26,6 @@ jobs:
         mkdir ${{ github.workspace }}/deps
         cd ${{ github.workspace }}/deps
         
-        wget https://gist.githubusercontent.com/zumbo666/899e916b256e4830e80fce5a1ddb0b4f/raw/5d8e6ac1c0334900ddaab216a14d5497fa3bea63/compile_im_deps_intel.sh
+        wget https://gist.githubusercontent.com/zumbo666/899e916b256e4830e80fce5a1ddb0b4f/raw/ba4acfe0f1f2953543ee23c1087924ee2dc52b86/compile_im_deps_intel.sh
 
         sh compile_im_deps_intel.sh
