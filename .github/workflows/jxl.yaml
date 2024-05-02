@@ -18,6 +18,7 @@ jobs:
         set -e
         
         export HOMEBREW_NO_AUTO_UPDATE=1
+        brew install llvm
         brew install pkg-config nasm yasm gettext autoconf automake python@3.9 coreutils ninja
 
     - name: Build Deps
@@ -38,7 +39,7 @@ jobs:
         echo "| Building jxl"
         echo "+--------------------------------"
     
-        git clone --branch v0.8.0 https://github.com/libjxl/libjxl.git --recursive --shallow-submodules
+        git clone https://github.com/libjxl/libjxl.git --recursive --shallow-submodules
         cd libjxl
         mkdir buildir && cd buildir
     
@@ -54,7 +55,8 @@ jobs:
                   -DJPEGXL_ENABLE_SJPEG=NO \
                   -DJPEGXL_ENABLE_SKCMS=YES \
                   -DJPEGXL_FORCE_SYSTEM_BROTLI=NO \
-                  -DJPEGXL_FORCE_SYSTEM_HWY=NO
+                  -DJPEGXL_FORCE_SYSTEM_HWY=NO \
+                  -DCMAKE_C_COMPILER="/usr/local/opt/llvm/bin/clang"
     
         cmake --build . -- -j$(nproc)
 
