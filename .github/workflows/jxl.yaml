@@ -26,12 +26,12 @@ jobs:
         export CURR_DIR=$(PWD)
         export DELEGATES=$CURR_DIR/im_build
               
-        export CC="clang -mmacosx-version-min=10.15"
-        export CXX="clang++ -std=c++17 -stdlib=libc++ -mmacosx-version-min=10.15"
-        export OBJC="clang -mmacosx-version-min=10.15"
-        export OBJCXX="clang++ -std=c++17 -stdlib=libc++ -mmacosx-version-min=10.15"
-        export AS="as -mmacosx-version-min=10.15"
-        export LD="ld -macosx_version_min 10.15"
+        # export CC="clang -mmacosx-version-min=10.15"
+        # export CXX="clang++ -std=c++17 -stdlib=libc++ -mmacosx-version-min=10.15"
+        # export OBJC="clang -mmacosx-version-min=10.15"
+        # export OBJCXX="clang++ -std=c++17 -stdlib=libc++ -mmacosx-version-min=10.15"
+        # export AS="as -mmacosx-version-min=10.15"
+        # export LD="ld -macosx_version_min 10.15"
               
         mkdir -p $DELEGATES
 
